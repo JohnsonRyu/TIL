@@ -5,22 +5,50 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" id="user_id" v-model="userId">
-    <input type="password" id="user_password" v-model="userPassword">
-    <button type="button">로그인</button>
-    <br />
-    아이디 : {{ userId }}
-    <br />
-    패스워드 : {{ userPassword }}
+    <ul style="list-style: none;">
+      <template v-for="item in items">
+        <li>
+          <img :src="item.image" />
+        </li>
+        <li>
+          {{ item.title }}
+        </li>
+      </template>
+    </ul>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
-    new Vue({
+    let app = new Vue({
       el: '#app',
       data() {
         return {
-          userId: '',
-          userPassword: ''
+          items: [
+            {
+              id: 1,
+              image: "https://picsum.photos/210/118/?image=1",
+              title: "컴퓨터",
+            },
+            {
+              id: 2,
+              image: "https://picsum.photos/210/118/?image=100",
+              title: "바다",
+            },
+            {
+              id: 3,
+              image: "https://picsum.photos/210/118/?image=130",
+              title: "하늘",
+            },
+            {
+              id: 4,
+              image: "https://picsum.photos/210/118/?image=160",
+              title: "핸드폰",
+            },
+            {
+              id: 5,
+              image: "https://picsum.photos/210/118/?image=200",
+              title: "소",
+            }
+          ]
         }
       }
     })
