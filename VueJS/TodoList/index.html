@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <style>
+    .dropdown ul {
+      display: none;
+      list-style: none;
+      margin: 0;
+      border: 1px solid black;
+      padding: 10px;
+      width: 200px;
+    }
 
+    .dropdown.on ul {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
-    <ul style="list-style: none;">
-      <template v-for="item in items">
-        <li>
-          <img :src="item.image" />
-        </li>
-        <li>
-          {{ item.title }}
-        </li>
-      </template>
-    </ul>
+    <!-- <img :id="`thubnail_${id}`" :src="image"> -->
+    <!-- <div :class="[dropdown, toggle]" :style="[style, fontStyle]">
+      테스트용 DIV
+    </div> -->
+    <div :class="[dropdown, toggle]">
+      <ul>
+        <li><a href="#">메뉴1</a></li>
+        <li><a href="#">메뉴2</a></li>
+      </ul>
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
@@ -22,33 +35,18 @@
       el: '#app',
       data() {
         return {
-          items: [
-            {
-              id: 1,
-              image: "https://picsum.photos/210/118/?image=1",
-              title: "컴퓨터",
-            },
-            {
-              id: 2,
-              image: "https://picsum.photos/210/118/?image=100",
-              title: "바다",
-            },
-            {
-              id: 3,
-              image: "https://picsum.photos/210/118/?image=130",
-              title: "하늘",
-            },
-            {
-              id: 4,
-              image: "https://picsum.photos/210/118/?image=160",
-              title: "핸드폰",
-            },
-            {
-              id: 5,
-              image: "https://picsum.photos/210/118/?image=200",
-              title: "소",
-            }
-          ]
+          id: 1,
+          image: "https://picsum.photos/210/118/?image=1",
+          style: {
+            background: "red",
+          },
+          fontStyle: {
+            fontSize: "20px"
+          },
+          dropdown: "dropdwon",
+          toggle: {
+            toggle: false
+          }
         }
       }
     })
