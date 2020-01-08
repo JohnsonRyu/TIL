@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+</head>
+<body>
+  <div id="app">
+    <input type="text" id="user_id" v-model="userId">
+    <input type="password" id="user_password" v-model="userPassword">
+    <button type="button">로그인</button>
+    <br />
+    아이디 : {{ userId }}
+    <br />
+    패스워드 : {{ userPassword }}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          userId: '',
+          userPassword: ''
+        }
+      }
+    })
+  </script>
+</body>
+</html>
