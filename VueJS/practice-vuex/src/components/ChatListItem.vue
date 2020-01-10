@@ -5,11 +5,13 @@
   </button>
 </template>
 <script>
+  import { bus } from '../event-bus';
+
   export default {
     props: ['chat'],
     methods: {
       itemClick() {
-        this.$emit('click', {...this.chat});
+        bus.$emit('CHAT_CLICK', {...this.chat});
       }
     }
   }
