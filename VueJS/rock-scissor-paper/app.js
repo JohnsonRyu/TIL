@@ -1,0 +1,1 @@
+console.log("기혁");
