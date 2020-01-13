@@ -40,7 +40,10 @@ new Vue({
         this.count = 3;
         this.isSelectable = true;
 
-        const log = `You: ${this.myChoice}, Computer: ${this.comChoice}`
+        let log = {
+          message: `You: ${this.myChoice}, Computer: ${this.comChoice}`,
+          winner: this.winner
+        } 
         this.logs.unshift(log);
       }
     }
