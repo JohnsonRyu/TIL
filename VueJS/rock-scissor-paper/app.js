@@ -6,12 +6,14 @@ new Vue({
     count: 3,
     winner: null,
     lifeOfMe: 3,
-    lifeOfCom: 3
+    lifeOfCom: 3,
+    isSelectable: true,
+    logs: []
   },
   watch: {
     count: function(newVal) {
       if(newVal === 0) {
-        let number = Math.random();
+        const number = Math.random();
 
         if(number < 0.33) {
           this.comChoice = "scissor";
@@ -36,13 +38,18 @@ new Vue({
           this.lifeOfMe--;
         }
         this.count = 3;
+        this.isSelectable = true;
+
+        const log = `You: ${this.myChoice}, Computer: ${this.comChoice}`
+        this.logs.unshift(log);
       }
     }
   },
   methods: {
     startGame: function() {
       if(this.myChoice) {
-        let countDown = setInterval(() => {
+        this.isSelectable = false;
+        const countDown = setInterval(() => {
           this.count --;
           if(this.count === 0) {
             clearInterval(countDown);
