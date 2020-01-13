@@ -1,1 +1,6 @@
-console.log("기혁");
+new Vue({
+  el: "#app",
+  data: {
+    myChoice: null,
+  }
+});
