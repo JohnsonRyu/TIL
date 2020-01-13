@@ -20,21 +20,22 @@ new Vue({
         } else {
           this.comChoice = "paper";
         }
-      }
-      // 승패 결정
-      if(this.myChoice === this.comChoice) this.winner = "no one"
-      else if(this.myChoice === "rock" && this.comChoice === "scissor") this.winner = "me"
-      else if(this.myChoice === "scissor" && this.comChoice === "paper") this.winner = "me"
-      else if(this.myChoice === "paper" && this.comChoice === "rock") this.winner = "me"
-      else if(this.myChoice === "scissor" && this.comChoice === "rock") this.winner = "com"
-      else if(this.myChoice === "paper" && this.comChoice === "scissor") this.winner = "com"
-      else if(this.myChoice === "rock" && this.comChoice === "paper") this.winner = "com"
-      else this.winner = "error"
+        // 승패 결정
+        if(this.myChoice === this.comChoice) this.winner = "no one"
+        else if(this.myChoice === "rock" && this.comChoice === "scissor") this.winner = "me"
+        else if(this.myChoice === "scissor" && this.comChoice === "paper") this.winner = "me"
+        else if(this.myChoice === "paper" && this.comChoice === "rock") this.winner = "me"
+        else if(this.myChoice === "scissor" && this.comChoice === "rock") this.winner = "com"
+        else if(this.myChoice === "paper" && this.comChoice === "scissor") this.winner = "com"
+        else if(this.myChoice === "rock" && this.comChoice === "paper") this.winner = "com"
+        else this.winner = "error"
 
-      if(this.winner === "me") {
-        this.lifeOfCom --;
-      } else if(this.winner === "com") {
-        this.lifeOfMe--;
+        if(this.winner === "me") {
+          this.lifeOfCom --;
+        } else if(this.winner === "com") {
+          this.lifeOfMe--;
+        }
+        this.count = 3;
       }
     }
   },
