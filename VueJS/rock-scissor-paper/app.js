@@ -46,6 +46,32 @@ new Vue({
         } 
         this.logs.unshift(log);
       }
+    },
+    lifeOfMe: function(newVal) {
+      if(newVal === 0) {
+        setTimeout(() => {
+          confirm("안타깝네요. 당신이 패배하였습니다.")
+          this.lifeOfMe = 3;
+          this.lifeOfCom = 3;
+          this.myChoice = null;
+          this.comChoice = null;
+          this.winner = null;
+          this.logs = [];
+        }, 500);
+      }
+    },
+    lifeOfCom: function(newVal) {
+      if(newVal === 0) {
+        setTimeout(() => {
+          confirm("축하드립닏다. 당신이 승리하였습니다.")
+          this.lifeOfMe = 3;
+          this.lifeOfCom = 3;
+          this.myChoice = null;
+          this.comChoice = null;
+          this.winner = null;
+          this.logs = [];
+        }, 500);
+      }
     }
   },
   methods: {
