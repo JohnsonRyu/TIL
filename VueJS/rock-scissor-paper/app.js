@@ -8,69 +8,47 @@ new Vue({
     lifeOfMe: 3,
     lifeOfCom: 3,
     isSelectable: true,
-    logs: []
+    logs: [],
+    selects: [
+      { name: "가위", value: "scissor"},
+      { name: "바위", value: "rock"},
+      { name: "보", value: "paper"}
+    ]
+  },
+  computed:{
+    myChoiceImg: function() {
+      return this.myChoice ? `images/${this.myChoice}.jpg` : "images/question.jpg";
+    },
+    comChoiceImg: function() {
+      return this.comChoice ? `images/${this.comChoice}.jpg` : "images/question.jpg";
+    },
+    leftLifeOfMe: function() {
+      return 3 - this.lifeOfMe;
+    },
+    leftLifeOfCom: function() {
+      return 3 - this.lifeOfCom;
+    }
   },
   watch: {
     count: function(newVal) {
       if(newVal === 0) {
-        const number = Math.random();
+        this.selectCom();
+        this.whoIsWin();
 
-        if(number < 0.33) {
-          this.comChoice = "scissor";
-        } else if(number < 0.66) {
-          this.comChoice = "rock";
-        } else {
-          this.comChoice = "paper";
-        }
-        // 승패 결정
-        if(this.myChoice === this.comChoice) this.winner = "no one"
-        else if(this.myChoice === "rock" && this.comChoice === "scissor") this.winner = "me"
-        else if(this.myChoice === "scissor" && this.comChoice === "paper") this.winner = "me"
-        else if(this.myChoice === "paper" && this.comChoice === "rock") this.winner = "me"
-        else if(this.myChoice === "scissor" && this.comChoice === "rock") this.winner = "com"
-        else if(this.myChoice === "paper" && this.comChoice === "scissor") this.winner = "com"
-        else if(this.myChoice === "rock" && this.comChoice === "paper") this.winner = "com"
-        else this.winner = "error"
-
-        if(this.winner === "me") {
-          this.lifeOfCom --;
-        } else if(this.winner === "com") {
-          this.lifeOfMe--;
-        }
         this.count = 3;
         this.isSelectable = true;
 
-        let log = {
-          message: `You: ${this.myChoice}, Computer: ${this.comChoice}`,
-          winner: this.winner
-        } 
-        this.logs.unshift(log);
+        this.updateLogs();
       }
     },
     lifeOfMe: function(newVal) {
       if(newVal === 0) {
-        setTimeout(() => {
-          confirm("안타깝네요. 당신이 패배하였습니다.")
-          this.lifeOfMe = 3;
-          this.lifeOfCom = 3;
-          this.myChoice = null;
-          this.comChoice = null;
-          this.winner = null;
-          this.logs = [];
-        }, 500);
+        this.endGame("안타깝네요. 당신이 패배하였습니다.");
       }
     },
     lifeOfCom: function(newVal) {
       if(newVal === 0) {
-        setTimeout(() => {
-          confirm("축하드립닏다. 당신이 승리하였습니다.")
-          this.lifeOfMe = 3;
-          this.lifeOfCom = 3;
-          this.myChoice = null;
-          this.comChoice = null;
-          this.winner = null;
-          this.logs = [];
-        }, 500);
+        this.endGame("축하드립닏다. 당신이 승리하였습니다.");
       }
     }
   },
@@ -87,6 +65,51 @@ new Vue({
       } else {
         alert("가위 바위 보 중 하나를 선택해주세요.")
       }
+    },
+    selectCom: function() {
+      const number = Math.random();
+      if(number < 0.33) {
+        this.comChoice = "scissor";
+      } else if(number < 0.66) {
+        this.comChoice = "rock";
+      } else {
+        this.comChoice = "paper";
+      }
+    },
+    whoIsWin: function() {
+      // 승패 결정
+      if(this.myChoice === this.comChoice) this.winner = "no one"
+      else if(this.myChoice === "rock" && this.comChoice === "scissor") this.winner = "me"
+      else if(this.myChoice === "scissor" && this.comChoice === "paper") this.winner = "me"
+      else if(this.myChoice === "paper" && this.comChoice === "rock") this.winner = "me"
+      else if(this.myChoice === "scissor" && this.comChoice === "rock") this.winner = "com"
+      else if(this.myChoice === "paper" && this.comChoice === "scissor") this.winner = "com"
+      else if(this.myChoice === "rock" && this.comChoice === "paper") this.winner = "com"
+      else this.winner = "error"
+
+      if(this.winner === "me") {
+        this.lifeOfCom --;
+      } else if(this.winner === "com") {
+        this.lifeOfMe--;
+      }
+    },
+    updateLogs: function() {
+      let log = {
+        message: `You: ${this.myChoice}, Computer: ${this.comChoice}`,
+        winner: this.winner
+      } 
+      this.logs.unshift(log);
+    },
+    endGame: function(message) {
+      setTimeout(() => {
+        confirm(message)
+        this.lifeOfMe = 3;
+        this.lifeOfCom = 3;
+        this.myChoice = null;
+        this.comChoice = null;
+        this.winner = null;
+        this.logs = [];
+      }, 500);
     }
   },
 });
