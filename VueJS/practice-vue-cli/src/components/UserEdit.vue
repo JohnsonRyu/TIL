@@ -23,13 +23,13 @@
 </template>
 
 <script>
+  import { eventBus } from "../main";
+
   export default {
     props: ["name", "address", "phone", "hasDog"],
     data() {
       return {
-        user: {
-
-        }
+        user: {}
       }
     },
     created() {
@@ -41,6 +41,7 @@
     methods: {
       changeUser() {
         this.$emit('child', this.user);
+        eventBus.userWasEdited(new Date());
       }
     },
 
