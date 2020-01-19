@@ -27,7 +27,8 @@
 </template>
 
 <script>
-import { EventBus } from '@/main.js'
+  import { EventBus } from '@/main.js'
+  import { mapMutations } from 'vuex'
 
   export default {
     data() {
@@ -40,6 +41,7 @@ import { EventBus } from '@/main.js'
       }
     },
     methods: {
+      ...mapMutations(['addUsers']),
       signUp() {
         let userObj = {
           userId: this.userId,
@@ -48,7 +50,8 @@ import { EventBus } from '@/main.js'
           address: this.address,
           src: this.src
         }
-        EventBus.$emit('signUp', userObj)
+        this.$store.commit('addUsers', userObj);
+        // this.addUsers(userObj);
         this.clearForm()
       },
       clearForm() {
