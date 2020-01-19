@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { EventBus } from '@/main.js'
 import { mapState, mapGetters } from 'vuex'
 
   export default {
@@ -35,11 +34,6 @@ import { mapState, mapGetters } from 'vuex'
       }),
       ...mapState(['allUsers'])
       // ...mapGetters(['allUsersCount', 'countOfSeoul', 'percentOfSeoul'])
-    },
-    mounted() {
-      EventBus.$on('signUp', users => {
-        this.$store.state.allUsers.push(users)
-      })
     }
   }
 </script>
