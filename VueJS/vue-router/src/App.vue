@@ -14,7 +14,7 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="$router.push({name : 'about'})">
+        <v-list-tile router :to="{name: 'about'}">
           <v-list-tile-action>
             <i class="fas fa-user"></i>
           </v-list-tile-action>
@@ -22,12 +22,18 @@
             <v-list-tile-title>About</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile router :to="{
-          name: 'users',
-          params: {
-            userId: 4321
-          }}"
-          exact
+        <v-list-tile 
+          router
+          :to="{
+            name: 'users',
+            params: {
+              userId: 4321
+            },
+            query: {
+              group: 'member',
+              category: 'trial'
+            }
+          }"
         >
           <v-list-tile-action>
             <i class="fas fa-user"></i>
