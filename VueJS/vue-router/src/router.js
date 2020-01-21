@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home'
-import About from './views/About'
-import Users from './views/Users'
+import Home from './views/Home.vue'
+import About from './views/About.vue'
+import Users from './views/Users.vue'
+import UsersDetail from './views/UsersDetail.vue'
+import UsersEdit from './views/UsersEdit.vue'
 
 Vue.use(Router)
 
@@ -21,9 +23,21 @@ export default new Router({
       component: About
     },
     {
-      path: '/users/:userId',
+      path: '/users',
       name: 'users',
-      component: Users
+      component: Users,
+      children: [
+        {
+          path: ':id',
+          name: 'users-detail',
+          component: UsersDetail
+        },
+        {
+          path: ':id/edit',
+          name: 'users-edit',
+          component: UsersEdit
+        },
+      ]
     }
   ]
 })

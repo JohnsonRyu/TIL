@@ -24,16 +24,7 @@
         </v-list-tile>
         <v-list-tile 
           router
-          :to="{
-            name: 'users',
-            params: {
-              userId: 4321
-            },
-            query: {
-              group: 'member',
-              category: 'trial'
-            }
-          }"
+          :to="{ name: 'users'}"
         >
           <v-list-tile-action>
             <i class="fas fa-user"></i>
