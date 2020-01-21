@@ -1,9 +1,7 @@
 <template>
 <v-layout>
   <v-container>
-    <v-row>
       <h1>유저를 검색해 주세요.</h1>
-      <v-col cols="12" sm="6" md="3">
         <v-text-field
           v-model="userId"
           label="유저 번호를 입력하세요."
@@ -17,9 +15,7 @@
         >
           검색
         </v-btn>
-      </v-col>
-    </v-row>
-    <router-view></router-view>
+      <router-view></router-view>
   </v-container>
 </v-layout>
 </template>
@@ -30,10 +26,15 @@ export default {
       userId: null
     }
   },
-  computed: {
-    userId() {
-      return this.$route.params.userId;
-    }
+  beforeRouteEnter: (to, from, next) => {
+    console.log("to", to);
+    console.log("from", from);
+    next();
+  },
+  beforeRouteLeave: (to, from, next) => {
+    console.log("to", to);
+    console.log("from", from);
+    next();
   }
 }
 </script>
