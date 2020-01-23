@@ -1,16 +1,22 @@
 <template>
   <div class="home">
-    <styled-button />
+    <Button>Button</Button>
+    <ButtonJS>Button</ButtonJS>
+    <StyledInput />
   </div>
 </template>
 
 <script>
-import { StyledButton } from "@/components/Button.ts";
+import Button from "@/components/Button.vue";
+import ButtonJS from "@/components/Button.js";
+import { StyledInput } from "@/components/Input.ts";
 
 export default {
   name: "home",
   components: {
-    "styled-button": StyledButton
+    Button,
+    ButtonJS,
+    StyledInput
   }
 };
 </script>
