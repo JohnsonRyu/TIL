@@ -1,7 +1,7 @@
 <template>
-  <styled-button :primary="primary">
+  <StyledButton :primary="primary">
     <slot />
-  </styled-button>
+  </StyledButton>
 </template>
 <script>
 import styled from "vue-styled-components";
