@@ -1,0 +1,12 @@
+{
+  "name": "variable-tag-styled-components-demo",
+  "version": "1.0.0",
+  "description": "Oftentimes to create a Styled Component with a dynamic tag people use it as a factory and thus lose the prop whitelisting that is currently in place. This is an alternative for everyone that is currently doing this, that doesn't suffer from this limitation.",
+  "keywords": [],
+  "main": "index.js",
+  "dependencies": {
+    "styled-components": "2.1.1",
+    "react-dom": "15.6.1",
+    "react": "15.6.1"
+  }
+}
