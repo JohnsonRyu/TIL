@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",   // 사용할 ECMAScript 버전 설정
+    /////////// module ///////////
+    "module": "CommonJS", // 모듈 설정
+    "moduleResolution": "node", // 모듈 (검색)해석 방식 설정
+    "allowSyntheticDefaultImports": true, // export default 를 export 한 값들을 가지는 객체로 설정
+    "esModuleInterop": true, // TS 2.7
+    /////////// log ///////////
+    "locale": "en", // 에러메세지 출력 언어 설정
+    /////////// React ///////////
+    "jsx": "react", // jsx 지원
+    /////////// Lint ///////////
+    "strict": true, // 모든 엄격한 타입 검사 옵션을 활성화
+    "noUnusedLocals": true, // 사용안된 지역변수에 대한 오류 보고 여부
+    "noUnusedParameters": true,  // 사용안된 파라미터에 대한 오류 보고 여부
+    /////////// edit outfile ///////////
+    "noEmit": false, // 결과파일을 저장하지 않음
+    /////////// more spec ///////////
+    "experimentalDecorators": true, // ES Decorator에 대한 실험적 기능 사용 여부
+    /////////// sourceMap ///////////
+    "sourceMap": true, // 소스맵(*.map) 파일 생성 여부
+    /////////// etc ///////////
+    "skipLibCheck": false, // 모든 선언파일(*.d.ts)의 유형검사를 건너뛸지 여부
+  }
+}
