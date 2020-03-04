@@ -1,3 +1,3 @@
-import { TestPage } from "./TestPage";
+import { MainPage } from "./MainPage";
 
-export { TestPage };
+export { MainPage };
