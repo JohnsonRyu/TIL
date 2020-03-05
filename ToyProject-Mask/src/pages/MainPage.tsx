@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
+import axios from "axios";
 
 export class MainPage extends Component {
+
+  componentDidMount() {
+    axios.get(`http://ec2-15-164-165-70.ap-northeast-2.compute.amazonaws.com/naeulcheck`)
+      .then(res => {
+        const persons = res.data;
+        this.setState({ persons });
+
+        console.warn(persons);
+      })
+  }
+
+
   render() {
     return (
       <Table celled>
