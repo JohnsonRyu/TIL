@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Statistic } from 'semantic-ui-react'
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import axios from "axios";
@@ -13,14 +14,29 @@ export class MainPage extends Component {
       .then(res => {
 
         this.curData = res.data;
-        console.warn(this.curData);
+
+        res.data[0][Object.keys(res.data[0])[0]];
+        console.warn(Object.keys(res.data[0]).length);
+        console.warn(res.data[0][Object.keys(res.data[0])[1]]);
+        console.warn(this.curData[0].length());
       })
   }
+
+  renderData = () => {
+    return(
+      <Statistic>
+        <Statistic.Value>5,550</Statistic.Value>
+        <Statistic.Label>Downloads</Statistic.Label>
+      </Statistic>
+    )
+  }
+
+  
 
   render() {
     return (
       <div>
-        {this.curData ? this.curData[0].time : "dd"}
+        {this.curData ? this.renderData() : null}
       </div>
     );
   }
