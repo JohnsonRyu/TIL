@@ -38,9 +38,9 @@ export class MainPage extends Component {
 
   render() {
     return (
-      <div>
+      <Statistic.Group>
         {this.curData ? this.renderData() : null}
-      </div>
+      </Statistic.Group>
     );
   }
 }
