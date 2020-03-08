@@ -18,16 +18,19 @@ export class MainPage extends Component {
         res.data[0][Object.keys(res.data[0])[0]];
         console.warn(Object.keys(res.data[0]).length);
         console.warn(res.data[0][Object.keys(res.data[0])[1]]);
-        console.warn(this.curData[0].length());
       })
   }
 
   renderData = () => {
     return(
-      <Statistic>
-        <Statistic.Value>5,550</Statistic.Value>
-        <Statistic.Label>Downloads</Statistic.Label>
-      </Statistic>
+      Object.keys(this.curData[0]).map((data: any) => {
+        return (
+          <Statistic>
+            <Statistic.Value>{this.curData[0][data]}</Statistic.Value>
+            <Statistic.Label>{data}</Statistic.Label>
+          </Statistic>
+        )
+      })
     )
   }
 
