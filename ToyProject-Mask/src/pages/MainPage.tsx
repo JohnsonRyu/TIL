@@ -12,7 +12,6 @@ export class MainPage extends Component {
   componentDidMount() {
     axios.get(`http://slb-3774813.ncloudslb.com/`)
       .then(res => {
-
         console.error(res.data)
 
         this.curData = res.data.datas;
@@ -21,11 +20,15 @@ export class MainPage extends Component {
   }
 
   renderData = () => {
-    return (
-      <Statistic>
-        <Statistic.Value>{this.curData[0].key}</Statistic.Value>
-        <Statistic.Label>{this.curData[0].value}</Statistic.Label>
-      </Statistic>
+    return(
+      this.curData.map((data: any) => {
+        return (
+          <Statistic>
+            <Statistic.Value>{data.key}</Statistic.Value>
+            <Statistic.Label>{data.value}</Statistic.Label>
+          </Statistic>
+        )
+      })
     )
   }
 
