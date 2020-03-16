@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import { Grid, Header } from 'semantic-ui-react'
+import { Grid, Header } from "semantic-ui-react";
+import styled from "styled-components";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import axios from "axios";
+
+const Container = styled.div`
+  height: 1024px;
+
+  display: flex;
+  justify-content: center;
+`;
 
 @observer
 export class MainPage extends Component {
@@ -35,9 +43,11 @@ export class MainPage extends Component {
 
   render() {
     return (
-      <Grid columns={3} divided>
-        {this.curData ? this.renderData() : null}
-      </Grid>
+      <Container>
+        <Grid columns={3} divided>
+          {this.curData ? this.renderData() : null}
+        </Grid>
+      </Container>
     );
   }
 }
