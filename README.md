@@ -165,3 +165,59 @@ var symbol2 = Symbol("abc");   // Symbol(abc)
 // 같은 값의 key를 대입하여도, Symbol로 선언하면 같지 않다.
 ```
 ---
+## (4) [JS] 형변환
+대부분의 언어에서 형변환이 존재한다. 직접 한땀한땀 변경하는 방법과 자동으로 변경하는 방법 정도로 생가하면 좋을 것 같다. **분명 한 것은 한땀한땀 변경하는 것을 모두가 추천할 것이다.**
+
+### 암묵적 타입 변환(Implicit Coercion)
+* 자바스크립트의 강점이기도 하지만, 가장 피해야할 기능이기도 하다. 자바스크립트는 **느슨한 언어**이기에  **var**는 어떤 타입이든 자동적으로 변경 된다.
+
+```
+1 + "Ryuk"    // 1Ryuk : string
+1 + "2" + 3   // 121 : string
+1 + 2 + "3"   // 33 : string
+2 * "2"       // 4 : number
+1 + true      // 2 : number
+1 + false     // 1 : number
+```
+예제가 더 보고 싶다면 [(링크)](https://dev.to/promhize/what-you-need-to-know-about-javascripts-implicit-coercion-e23)
+
+* 위와 같은 기괴한 타입 변환이 이루어지는데. 사실 눈으로 한 번 감상하면 대략적인 규칙을 알 수 있다. 이렇게 가볍게 다루는 것은 **결국 이렇게 쓰면 안되고, 코드를 짜다보면 이런 기괴한 코드를 작성할 일은 없기 때문이다.** 하지만, 많은 개발자들과 함께 작업을 하다보면 이런 기괴한 코드가 나오고 협업하는 개발자들은 해당 코드를 파악하기 위하여 시간을 많이 쏟아야 되니 애초에 더 타이트한 타입스크립트를 사용하게 되는 것이다.
+
+### 명시적 타입 변환 (Explicit Coercion)
+* 명시적 타입 변환은 말 그대로 **명시!** 하겠다는 것이다. Number(), parseInt(), parseFloat(), String(), Boolean() 등이 있다.
+
+```
+Number(null)            // 0
+Number(undefined)       // NaN
+Number(true)            // 1
+Number(false)           // 0
+Number(" 12 ")          // 12
+Number("-12.34")        // -12.34
+Number("\n")            // 0
+Number(" 12s ")         // NaN
+Number(123)             // 123
+String(123)             // "123"
+String(-12.3)           // "-12.3"
+String(null)            // "null"
+String(undefined)       // "undefined"
+String(true)            // "true"
+String(false)           // "false"
+Boolean('')             // false
+Boolean(0)              // false     
+Boolean(-0)             // false
+Boolean(NaN)            // false
+Boolean(null)           // false
+Boolean(undefined)      // false
+Boolean(false)          // false
+Boolean({})             // true
+Boolean([])             // true
+Boolean(Symbol())       // true
+Boolean(function() {})  // true
+```
+
+작성하기 쉬운 코드는 깊어질 수록 큰 혼란을 가져오게 되는 것 같다.</br>
+타입을 신경 쓰지 않은 Javascript 코드로 협업을 할 상상을 하면 가슴이 뛴다.</br>
+Typescript를 도입하는 프로젝트의 수가 점차 증가하여 지금은 약 28%를 차지한다고 하는데.</br>
+2012년 10월 1일 약 7년전에 나온 것 치고 비중이 점점 높아지는 이유를 알 것도 같다.
+
+---
