@@ -221,3 +221,103 @@ Typescript를 도입하는 프로젝트의 수가 점차 증가하여 지금은 
 2012년 10월 1일 약 7년전에 나온 것 치고 비중이 점점 높아지는 이유를 알 것도 같다.
 
 ---
+## (5) [JS] 화살표 함수
+약 2년전, Javascript를 처음 접할 때 Arrow Function이 그냥 함수를 정의할 때. 꼭 써야하는 문법이라고 생각했다. 난 시작 부터 **ECMAScript2015(ES6)** 가 있었기 때문이다. (왜 2015가 6가 되는진 모르겠다.) JS에 대해서 조금 알게 되고, 실제 제품을 만들 때 '굳이 화살표 함수를 써야하나?' 생각이 들었다. 도대체 이게 왜 나왔고, 뭐가 편리한지 알아보자.
+
+### 스포 : (1) function에 비해 구문이 짧고, (2) this, arguments, super 또는 new.target을 바인딩 하지 않는다. 
+
+### 1. function에 비해 구문이 짧다.
+```
+// ES5
+var foo = function () { console.log("foo") }; // foo
+
+// ES6
+var bar = () => console.log("bar"); // bar
+
+// ES5
+var plus = function (a, b) { console.log(a + b) };
+plus(1,2);  // 3
+
+// ES6
+var plus = (a,b) => console.log(a+b);
+plus(1,2);  // 3
+```
+
+* 오호 한줄로 보니 그럴듯 하다. 하지만 좀 더 여러 줄의 모습을 보자.
+
+```
+// ES5
+var GH = function () {
+  var first = "여러분들";
+  var second = "안냐세여~";
+
+  setTimeout(function () {
+		console.log(first);
+		console.log(second);
+	}, 1000);
+};
+
+GH(); // 여러분들 \n 안냐세여~
+
+// ES6
+var GH = () => {
+  var first = "여러분들";
+  var second = "안냐세여~";
+
+  setTimeout(() => {
+		console.log(first);
+		console.log(second);
+	}, 1000);
+};
+
+GH(); // 여러분들 \n 안냐세여~
+```
+```
+var dataStore = [
+    { "id": 1 },
+    { "id": 2 },
+    { "id": 3 },
+    { "id": 4 },
+];
+
+// ES5
+dataStore.map(function(data){ 
+  console.log(data.id);
+});
+
+// ES6
+dataStore.map((data) => {
+  console.log(data.id);
+})
+```
+
+* 더 사용하기 간략해져서 업데이트가 되었다..? 물론, 조금은... 아주 조금은.... 간략해졌다고 생각한다. class 안에 들어가는 function 정의가 아니고, 무언가 인라인으로 정의할 때? 하지만, 고작 이 이유만으로 babel 세팅까지 해서 화살표 함수를 쓰려고 하진 않을 것 같다. 분명 다른 이유가 있을 것 같다.
+
+### 2. 바인딩 하지 않는다.
+바인딩이라는 개념은 추후 보다 더 섬세하게 다루어볼 예정이다. 만만한 친구가 아니다..</br></br>
+공식문서를 살펴보면, 화살표함수는 **'메소드 함수가 아닌 곳에 적당하다.'** 라고 적혀있다.</br>
+ 여기서는 간단하게 차이만 눈에 익혀보자.
+
+ ```
+ var RyuK = {
+    age: 27,
+    
+    arrow: () => {
+        // this => global
+
+        console.log(this.age)
+        // undefined
+    },
+
+    normal: function() {
+        console.log(this.age)
+        // 27
+    }
+}
+ ```
+
+* **객체(object)의 this는 내부의 함수를 포함한 객체 자체에 바인딩 된다.**
+* 즉, 위의 예시에서 Arrow Function은 메소드가 아니였기 때문에 this가 바인딩 되지 않았다.
+* 고로, 여기까지만 살펴보면 Arrow Function은 this가 바인드 되지 않기 때문에 함수형 프로그래밍에 어울릴 것 같다. 인자를 넣어주고 return을 해주는. 하지만, 정확히는 함수와 메소드의 차이와 바인드에 대해서 더 자세히 공부해야 알 수 있을 것 같다.
+
+---
